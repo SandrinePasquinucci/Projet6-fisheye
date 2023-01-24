@@ -1,9 +1,10 @@
 
+
 function photographerFactory(data) {
     //existant mis en commentaire
    // const { name, portrait } = data;
    const { portrait,name, id, city, country, price,  tagline } = data;
-   console.log(data);
+   console.log(data.id);
     const picture = `assets/photographers/${portrait}`;
 
     function getUserCardDOM() {
@@ -11,17 +12,18 @@ function photographerFactory(data) {
         const img = document.createElement( 'img' );
         const a = document.createElement('a');
         const Artname = document.createElement( 'h2' ); 
-        const Artcity = document.createElement( 'div' );
-        const Artcountry = document.createElement( 'div' );
+        const Artcitycountry = document.createElement( 'div' );
         const Artprice = document.createElement( 'div' );
         const Arttagline = document.createElement( 'div' );
         
    
         img.setAttribute("src", picture)
         Artname.textContent = name;
-        Artcity.textContent = city;
-        Artcountry.textContent = city + ", " +country;
+        Artcitycountry.className = "Artcitycountry"
+        Artcitycountry.textContent = city + ", " +country;
+        Artprice.className = "Artprice"
         Artprice.textContent =price + "€/jour";
+        Arttagline.className = "Arttagline"
         Arttagline.textContent = tagline;
         
 
@@ -29,13 +31,13 @@ function photographerFactory(data) {
         article.appendChild(img);
         article.appendChild(Artname);
         
-        article.appendChild(Artcountry);
+        article.appendChild(Artcitycountry);
         article.appendChild(Arttagline);
         article.appendChild(Artprice);
        
         
         
-        
+        console.log(article)
         return (article);
       
     }
@@ -61,3 +63,49 @@ function photographerFactory(data) {
 //     }
 //     return { name, picture, getUserCardDOM }
 // }
+
+function photographerFactoryByID(ID,data) {
+    //existant mis en commentaire
+   // const { name, portrait } = data;
+   const { portrait,name, id, city, country, price,  tagline } = data;
+   console.log(data.id);
+    const picture = `assets/photographers/${portrait}`;
+
+    function getUserCardDOM() {
+        const article = document.createElement( 'article' );
+        const img = document.createElement( 'img' );
+        const a = document.createElement('a');
+        const Artname = document.createElement( 'h2' ); 
+        const Artcitycountry = document.createElement( 'div' );
+        const Artprice = document.createElement( 'div' );
+        const Arttagline = document.createElement( 'div' );
+        
+   
+        img.setAttribute("src", picture)
+        Artname.textContent = name;
+        Artcitycountry.className = "Artcitycountry"
+        Artcitycountry.textContent = city + ", " +country;
+        Artprice.className = "Artprice"
+        Artprice.textContent =price + "€/jour";
+        Arttagline.className = "Arttagline"
+        Arttagline.textContent = tagline;
+        
+
+
+        article.appendChild(img);
+        article.appendChild(Artname);
+        
+        article.appendChild(Artcitycountry);
+        article.appendChild(Arttagline);
+        article.appendChild(Artprice);
+       
+        
+        
+        console.log(article)
+        return (article);
+      
+    }
+    
+    return { portrait,name, id, country, price,  tagline ,
+        getUserCardDOM} 
+}
