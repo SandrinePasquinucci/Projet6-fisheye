@@ -1,4 +1,6 @@
 //Mettre le code JavaScript lié à la page photographer.html
+//comment recuperer l'id collée dans l'url de la page
+//https://www.sitepoint.com/get-url-parameters-with-javascript/
 
 //    function getIDUrl() {
 // const queryString  = window.location.search;
