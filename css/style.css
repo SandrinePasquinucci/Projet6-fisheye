@@ -58,6 +58,10 @@ h1 {
 }
 
 /* style ville + pays : rajout des elements figma */
+.photographer_section a {
+  text-decoration: none;
+}
+
 .photographer_section article .Artcitycountry {
   color: #901c1c;
   font-size: 13px;
