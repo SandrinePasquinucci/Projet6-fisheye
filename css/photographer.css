@@ -1,3 +1,7 @@
+body {
+  position: relative;
+}
+
 #contact_modal {
   display: none;
 }
@@ -7,11 +11,12 @@
   height: 300px;
   margin: 0 100px;
 }
-
+/* banniere : presentation du photographe + bouton + photo*/
 .banniere {
   display: flex;
   justify-content: space-around;
   align-items: center;
+  padding-top: 25px;
 }
 .banniere h2 {
   color: #d3573c;
@@ -36,6 +41,7 @@
   object-fit: cover;
   border-radius: 50%;
 }
+
 .contact_button {
   font-size: 20px;
   font-weight: bold;
@@ -47,6 +53,80 @@
   background-color: #901c1c;
   border-radius: 5px;
   cursor: pointer;
+}
+.encart {
+  background-color: #db8876;
+  height: 89px;
+  width: 376px;
+  border-radius: 5px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20px;
+  font-weight: 500;
+  font-size: 24px;
+  position: relative;
+  margin-bottom: 100px;
+  position: fixed;
+  bottom: -120px;
+  right: 20px;
+}
+
+.encart .price {
+  width: 60%;
+  text-align: end;
+}
+
+/* trier par */
+.triClass {
+  padding-top: 25px;
+  margin: 30px 100px;
+  font-weight: 700;
+  font-size: 18px;
+}
+
+.triClass select {
+  background-color: #901c1c;
+}
+/* card : photo + titre + like */
+
+.photograph-main {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: space-between;
+  margin: 30px 100px;
+  padding-bottom: 70px;
+}
+.card {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+}
+.card img {
+  height: 300px;
+  width: 350px;
+  object-fit: cover;
+}
+.card video {
+  height: 300px;
+  width: 350px;
+  object-fit: cover;
+}
+
+.description {
+  display: flex;
+  justify-content: space-between;
+  color: #901c1c;
+  padding-top: 10px;
+}
+.description i {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.medTitle {
+  width: 87%;
 }
 
 .modal {

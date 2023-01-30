@@ -38,6 +38,7 @@ h1 {
   flex-direction: column;
   /* style général de article rajout épaisseur police selon figma */
   font-weight: 400;
+  color: black;
 }
 
 .photographer_section article h2 {
