@@ -20,8 +20,33 @@ async function getMedias() {
     .then((reponse) => reponse.json())
     .then((data) => data.media);
 }
+function myfunctionTri(medias) {
+  var selectElmt = document.getElementById("listeClass");
+  var valeurselectionnee = selectElmt.options[selectElmt.selectedIndex].value;
+  var textselectionne = selectElmt.options[selectElmt.selectedIndex].text;
 
-function tri() {
+  console.log(selectElmt);
+  console.log(valeurselectionnee);
+  console.log(textselectionne);
+  textselectionne = "titre";
+  //https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Global_Objects/Array/sort
+  if (textselectionne === "date") {
+    medias.sort(function (a, b) {
+      return a.date - b.date;
+    });
+  }
+  if (textselectionne === "titre") {
+    medias.sort(function (a, b) {
+      return a.title.toLowerCase() - b.title.toLowerCase();
+    });
+  }
+  if (textselectionne === "popularite") {
+    medias.sort(function (a, b) {
+      return a.likes - b.likes;
+    });
+  }
+}
+function tri(medias) {
   let triClass = document.createElement("div");
   let label = document.createElement("label");
   let select = document.createElement("select");
@@ -33,12 +58,17 @@ function tri() {
 
   label.forName = "label";
   label.textContent = "Trier par";
-  select.id = "option";
-  option1.value = "option";
+  select.id = "listeClass";
+  //select.setAttribute("onchange", "myfunctionTri("`${medias}`")");
+  //select.setAttribute("onchange", "myfunctionTri("+medias")");
+  //select.setAttribute("onchange", "myfunctionTri"`(${medias})`);
+
+  option1.value = "option1";
   option1.textContent = "Date";
-  option2.value = "option";
+  option1.setAttribute("selected", "");
+  option2.value = "option2";
   option2.textContent = "Titre";
-  option3.value = "option";
+  option3.value = "option3";
   option3.textContent = "Popularité";
   select.appendChild(option1);
   select.appendChild(option2);
@@ -46,27 +76,6 @@ function tri() {
   triClass.appendChild(label);
   triClass.appendChild(select);
   return triClass;
-}
-
-function trierMedias(medias) {
-  //let value = document.querySelector(".photograph-tri");
-  const value = "titre";
-  console.log(value);
-  if (value === "date") {
-    medias.sort(function (a, b) {
-      return a.date - b.date;
-    });
-  }
-  if (value === "titre") {
-    medias.sort(function (a, b) {
-      return a.title - b.title;
-    });
-  }
-  if (value === "popularite") {
-    medias.sort(function (a, b) {
-      return a.likes - b.likes;
-    });
-  }
 }
 
 async function displayData(photographers, medias, idPhotographer, dossier) {
@@ -82,11 +91,11 @@ async function displayData(photographers, medias, idPhotographer, dossier) {
   let mediasSection = document.querySelector(".photograph-main");
   let triSection = document.querySelector(".photograph-tri");
   //rajout dans le dom du tri par date titre popularite
-  let triDOM = tri();
+  let triDOM = tri(medias);
   triSection.appendChild(triDOM);
-  //ecoute des evenements sur le tri
-  let choixoption = document.querySelector(".photograph-tri");
-  choixoption.addEventListener("click", trierMedias(medias));
+  //ecoute des evenements sur le tri au chargement de la page
+  //https://grafikart.fr/forum/18998
+  window.onload = myfunctionTri(medias);
 
   for (let i = 0; i < photographers.length; i++) {
     if (photographers[i].id == idPhotographer) {
