@@ -61,7 +61,7 @@ function photographerFactory(data, fenetre) {
       phototagline.className = "tagline";
       phototagline.textContent = tagline;
       photoLikes.className = "Likes";
-      photoLikes.textContent = "990000";
+
       photoLike.className = "fa-solid fa-heart";
       //<button class="contact_button" onclick="displayModal()">Contactez-moi</button>
       contact_button.className = "contact_button";

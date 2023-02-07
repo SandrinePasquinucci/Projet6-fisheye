@@ -99,7 +99,10 @@ body {
   border: none;
   border-radius: 5px;
   cursor: pointer;
-  text-align: center;
+}
+
+.triClass option {
+  height: 160px;
 }
 /* card : photo + titre + like */
 
@@ -115,6 +118,7 @@ body {
   display: flex;
   flex-direction: column;
   margin-bottom: 20px;
+  cursor: pointer;
 }
 .card img {
   height: 300px;
@@ -141,7 +145,18 @@ body {
 .medTitle {
   width: 87%;
 }
+/* Modal */
 
+#contact_modal {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  overflow: auto;
+}
 .modal {
   border-radius: 5px;
   background-color: #db8876;
@@ -168,7 +183,10 @@ body {
   font-weight: normal;
   text-align: center;
 }
-
+.modal .nomphoto {
+  font-size: 64px;
+  margin-top: -20px;
+}
 form {
   display: flex;
   width: 100%;
@@ -189,9 +207,78 @@ form div {
   margin-bottom: 26px;
 }
 
+.message {
+  width: 100%;
+  height: 170px;
+}
+
 form input {
   width: 100%;
   height: 68px;
   border: none;
   border-radius: 5px;
+}
+.contact_envoyer {
+  font-size: 20px;
+  font-weight: bold;
+  color: white;
+  padding: 11px;
+  width: 170px;
+  height: 70px;
+  border: none;
+  background-color: #901c1c;
+  border-radius: 5px;
+  cursor: pointer;
+}
+/* Lightbox*/
+/* Nous commencerons par mettre la propriété "position: relative" sur le diaporama et 
+retirer les éléments qui "dépassent" */
+.modalLightbox {
+  position: relative;
+  /* propriete css gere le depassement */
+  overflow: hidden;
+  height: 600px;
+  width: 650px;
+}
+/* Nous plaçons ensuite les flèches à droite et à gauche respectivement */
+.suivant,
+.precedent {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #901c1c;
+  font-size: 3em;
+  cursor: pointer;
+}
+
+.suivant {
+  right: 126px;
+}
+.precedent {
+  left: 126px;
+}
+/* Nous positionnons ensuite les éléments côte à côte au moyen d'une flexbox */
+.modal-content {
+  display: flex;
+  transition: 1s linear;
+  font-weight: 400;
+  font-size: 24px;
+  color: #901c1c;
+}
+
+.cardLight {
+  flex: 1 0 100%;
+}
+
+.cardLight > img {
+  width: 100%;
+}
+
+.closeLB {
+  color: #901c1c;
+  font-size: 2em;
+  position: absolute;
+  top: 77px;
+  right: 126px;
+  cursor: pointer;
 }

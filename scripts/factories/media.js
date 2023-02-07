@@ -38,6 +38,18 @@ function mediaFactory(data, dossier) {
     description.appendChild(medTitle);
     description.appendChild(medLikes);
     description.appendChild(medLike);
+
+    //gestion des likes
+
+    medLike.addEventListener("click", function () {
+      let AfficheLikes = document.querySelector(".Likes");
+
+      if (medLikes.textContent == data.likes) {
+        medLikes.textContent = +medLikes.textContent + 1;
+        likes += 1;
+        AfficheLikes.textContent = +AfficheLikes.textContent + 1;
+      }
+    });
     return card;
   }
 
