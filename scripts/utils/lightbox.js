@@ -1,13 +1,13 @@
 //lightbox
 
-function activediapo() {
+function activediapo(ordre) {
   //Nous allons commencer par aller chercher dans notre page les différents éléments
   //dont nous aurons besoin
   // On récupère le conteneur principal du diaporama
   const maLightbox = document.querySelector(".modalLightbox");
   // Variables globales
-  let compteur = 0; // Compteur qui permettra de savoir sur quelle slide nous sommes
-  let timer;
+  let compteur = ordre; // Compteur qui permettra de savoir sur quelle slide nous sommes
+  //let timer;
   // On récupère le conteneur de tous les éléments
   let content = document.querySelector(".modal-content");
   // On récupère un tableau contenant la liste des diapos
@@ -19,6 +19,13 @@ function activediapo() {
   // Dans la variable "slideWidth" nous allons stocker la largeur visible du diaporama
   // On calcule la largeur visible du diaporama
   let slideWidth = maLightbox.getBoundingClientRect().width;
+
+  // On calcule la valeur du décalage
+
+  let decal = -slideWidth * compteur;
+  content.style.transform = `translateX(${decal}px)`;
+  // une fois sur la bonne diapo j'affiche le diapo
+  displayLightbox();
   // Nous allons placer deux écouteurs d'évènements,
   // un sur chaque flèche, pour gérer le déplacement
   // On met en place les écouteurs d'évènements sur les flèches
@@ -32,7 +39,7 @@ function activediapo() {
     // On incrémente le compteur
     compteur++;
     // Si on dépasse la fin du diaporama, on "rembobine"
-    console.log(slides.length);
+
     if (compteur == slides.length) {
       compteur = 0;
     }
@@ -54,33 +61,6 @@ function activediapo() {
     let decal = -slideWidth * compteur;
     content.style.transform = `translateX(${decal}px)`;
   }
-  // // Nous utiliseront un intervalle, stocké dans la variable "timer"
-  // // pour faire défiler le diaporama toutes les 4 secondes
-  // // Automatiser le diaporama
-  // timer = setInterval(slideNext, 4000);
-  // // Cette automatisation a un inconvénient, elle ne s'arrête jamais,
-  // // même lorsque nous cliquons sur une flèche.
-  // // Nous allons donc mettre en place un arrêt au survol du diaporama.
-  // // Gérer le survol de la souris
-  // maLightbox.addEventListener("mouseover", stopTimer);
-  // maLightbox.addEventListener("mouseout", startTimer);
-  // /**
-  //  * On stoppe le défilement
-  //  */
-  // function stopTimer() {
-  //   clearInterval(timer);
-  // }
-  // /**
-  //  * On redémarre le défilement
-  //  */
-  // function startTimer() {
-  //   timer = setInterval(slideNext, 4000);
-  // }
-  // Mise en oeuvre du "responsive"
-  window.addEventListener("resize", () => {
-    slideWidth = maLightbox.getBoundingClientRect().width;
-    slideNext();
-  });
 }
 function createLightBox(media, dossier) {
   let body = document.querySelector("body");
@@ -106,14 +86,20 @@ function createLightBox(media, dossier) {
   fermeLB.addEventListener("click", closeLightbox);
 
   let ouvreLB = document.querySelectorAll(".card");
-  ouvreLB.forEach((crt) => crt.addEventListener("click", displayLightbox));
+  ouvreLB.forEach((crt) =>
+    crt.addEventListener("click", (e) => {
+      const parentElement = e.target.closest(".card");
+      const parentElementOrdre = parentElement.dataset.id;
 
-  for (let i = 0; i < media.length; i++) {
-    let LBModel = LightBoxFactory(media[i], dossier);
-    let userLBDOM = LBModel.getLightBox();
-    modalcontent.appendChild(userLBDOM);
-  }
-  activediapo();
+      for (let i = 0; i < media.length; i++) {
+        let LBModel = LightBoxFactory(media[i], dossier);
+        let userLBDOM = LBModel.getLightBox();
+        modalcontent.appendChild(userLBDOM);
+      }
+      console.log(parentElementOrdre);
+      activediapo(parentElementOrdre);
+    })
+  );
 }
 
 function displayLightbox() {
@@ -140,11 +126,12 @@ function LightBoxFactory(data, dossier) {
 
     if (video === undefined) {
       imgLight.setAttribute("src", `${picture}/${image}`);
-
+      // imgLight.setAttribute("width", "650");
+      // imgLight.setAttribute("height", "600");
       cardLight.appendChild(imgLight);
     } else {
-      vidLight.setAttribute("width", "320");
-      vidLight.setAttribute("height", "240");
+      vidLight.setAttribute("width", "820");
+      vidLight.setAttribute("height", "740");
       vidLight.setAttribute("controls", "");
       sourceLight.setAttribute("src", `${picture}/${video}`);
       sourceLight.setAttribute("type", "video/mp4");

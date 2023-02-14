@@ -93,11 +93,19 @@ function validate() {
   } else {
     messerreur.style.display = "none";
   }
-  // console.log(idurl.innerText);
-  // queryString = "?id=" + idurl.innerText;
-  // //console.log(queryString);
 
-  closemodal();
+  console.log(
+    "Votre prénom : " +
+      prenom.value +
+      ", votre nom : " +
+      nom.value +
+      ", votre email : " +
+      email.value +
+      ", votre message : " +
+      message.value
+  );
+
+  closeModal();
   return false;
 }
 function displayModal() {

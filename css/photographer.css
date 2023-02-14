@@ -54,6 +54,12 @@ body {
   border-radius: 5px;
   cursor: pointer;
 }
+
+.contact_button:hover,
+.constact_button:focus {
+  color: black;
+  background-color: #d3573c;
+}
 .encart {
   background-color: #db8876;
   height: 89px;
@@ -65,7 +71,6 @@ body {
   padding: 0 20px;
   font-weight: 500;
   font-size: 24px;
-  position: relative;
   margin-bottom: 100px;
   position: fixed;
   bottom: -120px;
@@ -85,25 +90,49 @@ body {
   font-size: 18px;
   display: flex;
   justify-content: flex-start;
-  align-items: baseline;
+  align-items: flex-start;
   gap: 2%;
+  position: relative;
 }
-
-.triClass select {
+.selection {
+  align-items: right;
   width: 150px;
-  height: 60px;
+  border-radius: 5%;
   background-color: #901c1c;
   color: white;
   padding: 10px;
-  margin: 20px;
-  border: none;
-  border-radius: 5px;
+
+  display: flex;
+  justify-content: space-between;
+
   cursor: pointer;
+  padding: 20px;
+}
+.options {
+  position: absolute;
+  left: 70px;
 }
 
-.triClass option {
-  height: 160px;
+.option1,
+.option2,
+.option3 {
+  width: 150px;
+  border-top: 1px solid #d3573c;
+  background-color: #901c1c;
+  color: white;
+  padding: 10px;
+  display: flex;
+  visibility: hidden;
+  justify-content: space-between;
 }
+.option1 {
+  border-radius: 5% 5% 0 0;
+}
+
+.option3 {
+  border-radius: 0 0 5% 5%;
+}
+
 /* card : photo + titre + like */
 
 .photograph-main {
@@ -230,17 +259,20 @@ form input {
   border-radius: 5px;
   cursor: pointer;
 }
-/* Lightbox*/
-/* Nous commencerons par mettre la propriété "position: relative" sur le diaporama et 
-retirer les éléments qui "dépassent" */
+
+/* LightBOx */
+
 .modalLightbox {
-  position: relative;
-  /* propriete css gere le depassement */
+  display: none;
+  position: fixed;
+  max-height: 980px;
+  max-width: 1250px;
+  top: 5%;
+  left: 5%;
   overflow: hidden;
-  height: 600px;
-  width: 650px;
+  background-color: white;
 }
-/* Nous plaçons ensuite les flèches à droite et à gauche respectivement */
+
 .suivant,
 .precedent {
   position: absolute;
@@ -252,33 +284,40 @@ retirer les éléments qui "dépassent" */
 }
 
 .suivant {
-  right: 126px;
+  right: 20px;
 }
 .precedent {
-  left: 126px;
+  left: 20px;
 }
-/* Nous positionnons ensuite les éléments côte à côte au moyen d'une flexbox */
+.closeLB {
+  color: #901c1c;
+  font-size: 2em;
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  cursor: pointer;
+}
+
 .modal-content {
   display: flex;
   transition: 1s linear;
+  height: 800px;
+  width: 100%;
+}
+
+.cardLight {
+  flex: 1 0 100%;
+  position: relative;
   font-weight: 400;
   font-size: 24px;
   color: #901c1c;
 }
 
-.cardLight {
-  flex: 1 0 100%;
-}
-
 .cardLight > img {
   width: 100%;
+  object-fit: cover;
 }
 
-.closeLB {
-  color: #901c1c;
-  font-size: 2em;
-  position: absolute;
-  top: 77px;
-  right: 126px;
-  cursor: pointer;
+.medTitleLight {
+  padding: 5px;
 }

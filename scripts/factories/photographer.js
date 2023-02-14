@@ -6,7 +6,7 @@ function photographerFactory(data, fenetre) {
     function getUserCardDOM() {
       let article = document.createElement("article");
       let img = document.createElement("img");
-      //let a = document.createElement("a");
+
       let Artname = document.createElement("h2");
       let Artcitycountry = document.createElement("div");
       let Artprice = document.createElement("div");
@@ -15,6 +15,7 @@ function photographerFactory(data, fenetre) {
 
       link.setAttribute("href", `photographer.html?id=${id}`);
       img.setAttribute("src", picture);
+      img.setAttribute("alt", name);
       Artname.textContent = name;
       Artcitycountry.className = "Artcitycountry";
       Artcitycountry.textContent = city + ", " + country;
@@ -53,6 +54,7 @@ function photographerFactory(data, fenetre) {
       banniereencart.className = "banniereencart";
       txtphotographeclassName = "txtphotographe";
       photoimg.setAttribute("src", picture);
+      photoimg.setAttribute("alt", name);
       photoname.textContent = name;
       photocitycountry.className = "citycountry";
       photocitycountry.textContent = city + ", " + country;

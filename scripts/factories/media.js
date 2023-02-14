@@ -1,4 +1,4 @@
-function mediaFactory(data, dossier) {
+function mediaFactory(data, dossier, ordre) {
   let { id, title, image, video, likes, date, price } = data;
 
   const picture = `assets/SamplePhotos/${dossier}`;
@@ -16,17 +16,21 @@ function mediaFactory(data, dossier) {
 
     if (video === undefined) {
       img.setAttribute("src", `${picture}/${image}`);
+      img.setAttribute("alt", image);
       card.appendChild(img);
     } else {
       vid.setAttribute("width", "320");
       vid.setAttribute("height", "240");
       vid.setAttribute("controls", "");
       source.setAttribute("src", `${picture}/${video}`);
+      source.setAttribute("alt", video);
       source.setAttribute("type", "video/mp4");
       vid.appendChild(source);
       card.appendChild(vid);
     }
     card.className = "card";
+    card.dataset.id = ordre;
+    //card.setAttribute("ID", ordre);
     description.className = "description";
     medTitle.className = "medTitle";
     medTitle.textContent = title;
