@@ -1,17 +1,17 @@
 function photographerFactory(data, fenetre) {
-  let { portrait, name, id, city, country, price, tagline } = data;
+  const { portrait, name, id, city, country, price, tagline } = data;
 
   const picture = `assets/photographers/${portrait}`;
   if (fenetre == "index") {
     function getUserCardDOM() {
-      let article = document.createElement("article");
-      let img = document.createElement("img");
+      const article = document.createElement("article");
+      const img = document.createElement("img");
 
-      let Artname = document.createElement("h2");
-      let Artcitycountry = document.createElement("div");
-      let Artprice = document.createElement("div");
-      let Arttagline = document.createElement("div");
-      let link = document.createElement("a");
+      const Artname = document.createElement("h2");
+      const Artcitycountry = document.createElement("div");
+      const Artprice = document.createElement("div");
+      const Arttagline = document.createElement("div");
+      const link = document.createElement("a");
 
       link.setAttribute("href", `photographer.html?id=${id}`);
       img.setAttribute("src", picture);
@@ -36,18 +36,18 @@ function photographerFactory(data, fenetre) {
     }
   } else {
     function getUserCardDOM() {
-      let banniere = document.createElement("div");
-      let encart = document.createElement("div");
-      let banniereencart = document.createElement("div");
-      let txtphotographe = document.createElement("div");
-      let contact_button = document.createElement("button");
-      let photoimg = document.createElement("img");
-      let photoname = document.createElement("h2");
-      let photocitycountry = document.createElement("div");
-      let photoprice = document.createElement("div");
-      let phototagline = document.createElement("div");
-      let photoLikes = document.createElement("div");
-      let photoLike = document.createElement("i");
+      const banniere = document.createElement("div");
+      const encart = document.createElement("div");
+      const banniereencart = document.createElement("div");
+      const txtphotographe = document.createElement("div");
+      const contact_button = document.createElement("button");
+      const photoimg = document.createElement("img");
+      const photoname = document.createElement("h2");
+      const photocitycountry = document.createElement("div");
+      const photoprice = document.createElement("div");
+      const phototagline = document.createElement("div");
+      const photoLikes = document.createElement("div");
+      const photoLike = document.createElement("i");
 
       banniere.className = "banniere";
       encart.className = "encart";

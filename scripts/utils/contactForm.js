@@ -1,6 +1,6 @@
 function createModal(name) {
   //  function createModal(name, id) {
-  let modal = document.querySelector(".modal");
+  const modal = document.querySelector(".modal");
 
   modal.innerHTML = `
     <header>
@@ -37,12 +37,11 @@ function createModal(name) {
   //<div class="idphoto">${id}</div>
 }
 function validate() {
-  let prenom = document.getElementById("prenom");
-  let nom = document.getElementById("nom");
-  let email = document.getElementById("email");
-  let message = document.getElementById("message");
-  let messerreur = document.getElementById("erreur");
-  //let idurl = document.querySelector(".idphoto");
+  const prenom = document.getElementById("prenom");
+  const nom = document.getElementById("nom");
+  const email = document.getElementById("email");
+  const message = document.getElementById("message");
+  const messerreur = document.getElementById("erreur");
 
   //validation du prénom
   if (prenom.value.length < 2) {

@@ -1,18 +1,18 @@
 function mediaFactory(data, dossier, ordre) {
-  let { id, title, image, video, likes, date, price } = data;
+  const { id, title, image, video, likes, date, price } = data;
 
   const picture = `assets/SamplePhotos/${dossier}`;
 
   function getUserMediaDOM() {
-    let card = document.createElement("div");
-    let description = document.createElement("div");
-    let img = document.createElement("img");
-    let vid = document.createElement("video");
-    let source = document.createElement("source");
+    const card = document.createElement("div");
+    const description = document.createElement("div");
+    const img = document.createElement("img");
+    const vid = document.createElement("video");
+    const source = document.createElement("source");
 
-    let medTitle = document.createElement("div");
-    let medLikes = document.createElement("div");
-    let medLike = document.createElement("i");
+    const medTitle = document.createElement("div");
+    const medLikes = document.createElement("div");
+    const medLike = document.createElement("i");
 
     if (video === undefined) {
       img.setAttribute("src", `${picture}/${image}`);
@@ -46,7 +46,7 @@ function mediaFactory(data, dossier, ordre) {
     //gestion des likes
 
     medLike.addEventListener("click", function () {
-      let AfficheLikes = document.querySelector(".Likes");
+      const AfficheLikes = document.querySelector(".Likes");
 
       if (medLikes.textContent == data.likes) {
         medLikes.textContent = +medLikes.textContent + 1;

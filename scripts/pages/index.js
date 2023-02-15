@@ -7,11 +7,11 @@ async function getPhotographers() {
 //import { getPhotographers } from "../utils/api.js";
 
 async function displayData(photographers) {
-  let photographersSection = document.querySelector(".photographer_section");
+  const photographersSection = document.querySelector(".photographer_section");
 
   photographers.forEach((photographer) => {
-    let photographerModel = photographerFactory(photographer, "index");
-    let userCardDOM = photographerModel.getUserCardDOM();
+    const photographerModel = photographerFactory(photographer, "index");
+    const userCardDOM = photographerModel.getUserCardDOM();
     photographersSection.appendChild(userCardDOM);
   });
 }
