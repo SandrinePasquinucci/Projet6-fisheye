@@ -1,41 +1,44 @@
 function createModal(name) {
-  //  function createModal(name, id) {
+  //creation du dom
   const modal = document.querySelector(".modal");
-
   modal.innerHTML = `
     <header>
-    <h2>Contactez-moi</h2>
-    <img src="assets/icons/close.svg" onclick="closeModal()" />
-
-  </header>
-
-  <form
-  method="get"
-              onsubmit="return validate();"
-              novalidate>
-  <p class=nomphoto>${name}</p>
-    <div>
-      <label for="prenom">Prénom</label>
-      <input id="prenom"/>
-      <label for="nom">Nom</label>
-      <input id="nom"/>
-      <label for="email">Email</label>
-      <input id="email"/>
-      <label for"message">Votre message</label>
-              <textarea
-              name="message"
-              id="message"
-              class="message"
-            ></textarea>
-      <p id="erreur"></p>
-    </div>
-    <button class="contact_envoyer">Envoyer</button>
+      <h2>Contactez-moi</h2>
+      <img src="assets/icons/close.svg" alt="close" onclick="closeModal()" />
+      
+    </header>
+    <p class=nomphoto>${name}</p>
+    <form
+      method="get"
+      onsubmit="return validate();"
+      novalidate>
+      
+      <div role="group" aria-labelledby="coordonnees">
+        <label for="prenom">Prénom</label>
+          <input id="prenom" type="prenom" name="prenom" 
+            aria-labelledby="prenom" aria-describedby="prenom" aria-required=true />
+        <label for="nom">Nom</label>
+          <input id="nom"type="nom" name="nom"
+            aria-labelledby="nom" aria-describedby="nom" aria-required=true/>
+        <label for="email">Email</label>
+          <input id="email" type="email" name="email"
+            aria-labelledby="email" aria-describedby="email" aria-required=true/>
+        <label for="message">Votre message</label>
+          <textarea
+            name="message"
+            id="message"
+            class="message"
+            aria-labelledby="message" aria-describedby="message" aria-required=true
+          ></textarea>
+        <p id="erreur"></p>
+      </div>
+      <button class="contact_envoyer" type=submit  >Envoyer</button>
     
-  </form>
-      `;
-
-  //<div class="idphoto">${id}</div>
+    </form>
+  `;
 }
+
+//fonction qui valide le formulaire
 function validate() {
   const prenom = document.getElementById("prenom");
   const nom = document.getElementById("nom");
@@ -45,7 +48,6 @@ function validate() {
 
   //validation du prénom
   if (prenom.value.length < 2) {
-    //récupération du data-error décrit dans le css
     messerreur.style.display = "block";
     messerreur.textContent =
       "Veuillez entrer 2 caractères ou plus pour le champ du prénom.";
@@ -82,7 +84,6 @@ function validate() {
   }
   //validation du message
   if (message.value.length < 2) {
-    //récupération du data-error décrit dans le css
     messerreur.style.display = "block";
     messerreur.textContent =
       "Veuillez entrer 2 caractères ou plus pour le champ du message.";
@@ -93,6 +94,7 @@ function validate() {
     messerreur.style.display = "none";
   }
 
+  //affichage des éléments valides saisis dans le formulaire
   console.log(
     "Votre prénom : " +
       prenom.value +
@@ -107,12 +109,21 @@ function validate() {
   closeModal();
   return false;
 }
+
+//Affichage de la modale
 function displayModal() {
   const modal = document.getElementById("contact_modal");
+  const main = document.getElementById("main");
   modal.style.display = "block";
+  modal.setAttribute("aria-hidden", "false");
+  main.setAttribute("aria-hidden", "true");
 }
 
+//fermeture de la modale
 function closeModal() {
   const modal = document.getElementById("contact_modal");
+  const main = document.getElementById("main");
   modal.style.display = "none";
+  modal.setAttribute("aria-hidden", "true");
+  main.setAttribute("aria-hidden", "false");
 }

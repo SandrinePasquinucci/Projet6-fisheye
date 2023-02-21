@@ -94,6 +94,9 @@ body {
   gap: 2%;
   position: relative;
 }
+.triepar {
+  margin-top: 12px;
+}
 .selection {
   align-items: right;
   width: 150px;
@@ -101,12 +104,10 @@ body {
   background-color: #901c1c;
   color: white;
   padding: 10px;
-
   display: flex;
   justify-content: space-between;
-
   cursor: pointer;
-  padding: 20px;
+  padding: 18px;
 }
 .options {
   position: absolute;
@@ -124,6 +125,7 @@ body {
   display: flex;
   visibility: hidden;
   justify-content: space-between;
+  cursor: pointer;
 }
 .option1 {
   border-radius: 5% 5% 0 0;
@@ -174,7 +176,7 @@ body {
 .medTitle {
   width: 87%;
 }
-/* Modal */
+/* Modal formulaire de contact */
 
 #contact_modal {
   display: none;
@@ -215,6 +217,9 @@ body {
 .modal .nomphoto {
   font-size: 64px;
   margin-top: -20px;
+  align-items: flex-start;
+  display: flex;
+  width: 100%;
 }
 form {
   display: flex;
@@ -232,8 +237,9 @@ form div {
   display: flex;
   flex-direction: column;
   width: 100%;
-  align-items: self-start;
+  align-items: flex-start;
   margin-bottom: 26px;
+  margin-top: -40px;
 }
 
 .message {
@@ -260,7 +266,7 @@ form input {
   cursor: pointer;
 }
 
-/* LightBOx */
+/* Modal LightBox */
 
 .modalLightbox {
   display: none;

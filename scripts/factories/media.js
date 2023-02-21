@@ -9,7 +9,7 @@ function mediaFactory(data, dossier, ordre) {
     const img = document.createElement("img");
     const vid = document.createElement("video");
     const source = document.createElement("source");
-
+    const media = document.createElement("div");
     const medTitle = document.createElement("div");
     const medLikes = document.createElement("div");
     const medLike = document.createElement("i");
@@ -17,27 +17,30 @@ function mediaFactory(data, dossier, ordre) {
     if (video === undefined) {
       img.setAttribute("src", `${picture}/${image}`);
       img.setAttribute("alt", image);
-      card.appendChild(img);
+      img.setAttribute("tabindex", "0");
+      media.appendChild(img);
     } else {
       vid.setAttribute("width", "320");
       vid.setAttribute("height", "240");
       vid.setAttribute("controls", "");
+      vid.setAttribute("tabindex", "0");
       source.setAttribute("src", `${picture}/${video}`);
       source.setAttribute("alt", video);
       source.setAttribute("type", "video/mp4");
       vid.appendChild(source);
-      card.appendChild(vid);
+      media.appendChild(vid);
     }
     card.className = "card";
     card.dataset.id = ordre;
-    //card.setAttribute("ID", ordre);
+    media.className = "media";
     description.className = "description";
     medTitle.className = "medTitle";
     medTitle.textContent = title;
     medLikes.className = "medLike";
     medLikes.textContent = likes;
+    medLike.setAttribute("tabindex", "0");
     medLike.className = "fa-solid fa-heart";
-
+    card.appendChild(media);
     card.appendChild(description);
     description.appendChild(medTitle);
     description.appendChild(medLikes);
@@ -50,10 +53,21 @@ function mediaFactory(data, dossier, ordre) {
 
       if (medLikes.textContent == data.likes) {
         medLikes.textContent = +medLikes.textContent + 1;
-        likes += 1;
         AfficheLikes.textContent = +AfficheLikes.textContent + 1;
       }
     });
+
+    medLike.addEventListener("keypress", function () {
+      if (e.key === "Enter") {
+        const AfficheLikes = document.querySelector(".Likes");
+
+        if (medLikes.textContent == data.likes) {
+          medLikes.textContent = +medLikes.textContent + 1;
+          AfficheLikes.textContent = +AfficheLikes.textContent + 1;
+        }
+      }
+    });
+
     return card;
   }
 

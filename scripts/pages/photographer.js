@@ -31,7 +31,7 @@ function getMediasById(data, idPhotographer) {
 }
 function Tri(photographer) {
   //comment trier le menu déroulant pour les médias
-  // rajout des elements du photographe
+  // rajout des elements du photographe dans le dom
   const main = document.getElementById("main");
   const photographersSection = document.querySelector(".photograph-header");
 
@@ -55,21 +55,21 @@ function Tri(photographer) {
 
   triClass.innerHTML = `<div class="triepar">Trié par</div>
   <div class="selection">
-    <div class="optionselectionnee"></div>
-    <i class="flechehaut fa-solid fa-chevron-down"></i>
+    <div class='optionselectionnee tabindex="0"'></div>
+    <i class="flechebas fa-solid fa-chevron-down"></i>
   </div>
   <div class="options">
-    <div class="option1">
+    <div class='option1 tabindex="0"'>
       <div class="date">Date</div>
-      <i class="flechebas1 fa-solid fa-chevron-up"></i>
+      <i class="flechehaut1 fa-solid fa-chevron-up"></i>
     </div>
-    <div class="option2">
+    <div class='option2 tabindex="0"'>
       <div class="titre">Titre</div>
-      <i class="flechebas2 fa-solid fa-chevron-up"></i>
+      <i class="flechehaut2 fa-solid fa-chevron-up"></i>
     </div>
-    <div class="option3">
+    <div class='option3 tabindex="0"'>
       <div class="popularité">Popularité</div>
-      <i class="flechebas3 fa-solid fa-chevron-up"></i>
+      <i class="flechehaut3 fa-solid fa-chevron-up"></i>
     </div>
   </div>
   `;
@@ -79,29 +79,101 @@ function Tri(photographer) {
   afficheMedias(dossier);
 
   const selection = document.querySelector(".selection");
+  const option1 = document.querySelector(".option1");
+  const option2 = document.querySelector(".option2");
+  const option3 = document.querySelector(".option3");
+  const flechehaut1 = document.querySelector(".flechehaut1");
+  const flechehaut2 = document.querySelector(".flechehaut2");
+  const flechehaut3 = document.querySelector(".flechehaut3");
+  const flechebas = document.querySelector(".flechebas");
   selection.addEventListener("click", (e) => {
-    const option1 = document.querySelector(".option1");
-    const option2 = document.querySelector(".option2");
-    const option3 = document.querySelector(".option3");
-    const flechebas1 = document.querySelector(".flechebas1");
-    const flechebas2 = document.querySelector(".flechebas2");
-    const flechebas3 = document.querySelector(".flechebas3");
     option1.style.visibility = "visible";
     option2.style.visibility = "visible";
     option3.style.visibility = "visible";
+    flechehaut1.style.visibility = "visible";
+    flechehaut2.style.visibility = "visible";
+    flechehaut3.style.visibility = "visible";
     selection.style.visibility = "hidden";
-    flechebas1.style.visibility = "hidden";
-    flechebas2.style.visibility = "hidden";
-    flechebas3.style.visibility = "hidden";
-    option1.addEventListener("click", (e) => {
+    flechebas.style.visibility = "hidden";
+  });
+  option1.addEventListener("click", (e) => {
+    mediaTrie = mediaTrie.sort((a, b) => new Date(b.date) - new Date(a.date));
+    option1.style.visibility = "hidden";
+    option2.style.visibility = "hidden";
+    option3.style.visibility = "hidden";
+    selection.style.visibility = "visible";
+    flechehaut1.style.visibility = "hidden";
+    flechehaut2.style.visibility = "hidden";
+    flechehaut3.style.visibility = "hidden";
+    flechebas.style.visibility = "visible";
+    let optionselectionnee = document.querySelector(".optionselectionnee");
+    optionselectionnee.textContent = "Date";
+    let mediasSection = document.querySelector(".photograph-main");
+    while (mediasSection.firstChild) {
+      mediasSection.removeChild(mediasSection.firstChild);
+    }
+    afficheMedias(dossier);
+  });
+  option2.addEventListener("click", (e) => {
+    mediaTrie = mediaTrie.sort((a, b) => a.title.localeCompare(b.title));
+    option1.style.visibility = "hidden";
+    option2.style.visibility = "hidden";
+    option3.style.visibility = "hidden";
+    selection.style.visibility = "visible";
+    flechehaut1.style.visibility = "hidden";
+    flechehaut2.style.visibility = "hidden";
+    flechehaut3.style.visibility = "hidden";
+    flechebas.style.visibility = "visible";
+    let optionselectionnee = document.querySelector(".optionselectionnee");
+    optionselectionnee.textContent = "Titre";
+    let mediasSection = document.querySelector(".photograph-main");
+    while (mediasSection.firstChild) {
+      mediasSection.removeChild(mediasSection.firstChild);
+    }
+    afficheMedias(dossier);
+  });
+  option3.addEventListener("click", (e) => {
+    mediaTrie = mediaTrie.sort((a, b) => b.likes - a.likes);
+    option1.style.visibility = "hidden";
+    option2.style.visibility = "hidden";
+    option3.style.visibility = "hidden";
+    selection.style.visibility = "visible";
+    flechehaut1.style.visibility = "hidden";
+    flechehaut2.style.visibility = "hidden";
+    flechehaut3.style.visibility = "hidden";
+    flechebas.style.visibility = "visible";
+    let optionselectionnee = document.querySelector(".optionselectionnee");
+    optionselectionnee.textContent = "Popularité";
+    let mediasSection = document.querySelector(".photograph-main");
+    while (mediasSection.firstChild) {
+      mediasSection.removeChild(mediasSection.firstChild);
+    }
+    afficheMedias(dossier);
+  });
+
+  selection.addEventListener("keypress", (e) => {
+    if (e.key === "Enter") {
+      option1.style.visibility = "visible";
+      option2.style.visibility = "visible";
+      option3.style.visibility = "visible";
+      flechehaut1.style.visibility = "visible";
+      flechehaut2.style.visibility = "visible";
+      flechehaut3.style.visibility = "visible";
+      selection.style.visibility = "hidden";
+      flechebas.style.visibility = "hidden";
+    }
+  });
+  option1.addEventListener("keypress", (e) => {
+    if (e.key === "Enter") {
       mediaTrie = mediaTrie.sort((a, b) => new Date(b.date) - new Date(a.date));
       option1.style.visibility = "hidden";
       option2.style.visibility = "hidden";
       option3.style.visibility = "hidden";
       selection.style.visibility = "visible";
-      flechebas1.style.visibility = "visible";
-      flechebas2.style.visibility = "hidden";
-      flechebas3.style.visibility = "hidden";
+      flechehaut1.style.visibility = "hidden";
+      flechehaut2.style.visibility = "hidden";
+      flechehaut3.style.visibility = "hidden";
+      flechebas.style.visibility = "visible";
       let optionselectionnee = document.querySelector(".optionselectionnee");
       optionselectionnee.textContent = "Date";
       let mediasSection = document.querySelector(".photograph-main");
@@ -109,16 +181,19 @@ function Tri(photographer) {
         mediasSection.removeChild(mediasSection.firstChild);
       }
       afficheMedias(dossier);
-    });
-    option2.addEventListener("click", (e) => {
+    }
+  });
+  option2.addEventListener("keypress", (e) => {
+    if (e.key === "Enter") {
       mediaTrie = mediaTrie.sort((a, b) => a.title.localeCompare(b.title));
       option1.style.visibility = "hidden";
       option2.style.visibility = "hidden";
       option3.style.visibility = "hidden";
       selection.style.visibility = "visible";
-      flechebas1.style.visibility = "hidden";
-      flechebas2.style.visibility = "visible";
-      flechebas3.style.visibility = "hidden";
+      flechehaut1.style.visibility = "hidden";
+      flechehaut2.style.visibility = "hidden";
+      flechehaut3.style.visibility = "hidden";
+      flechebas.style.visibility = "visible";
       let optionselectionnee = document.querySelector(".optionselectionnee");
       optionselectionnee.textContent = "Titre";
       let mediasSection = document.querySelector(".photograph-main");
@@ -126,16 +201,19 @@ function Tri(photographer) {
         mediasSection.removeChild(mediasSection.firstChild);
       }
       afficheMedias(dossier);
-    });
-    option3.addEventListener("click", (e) => {
+    }
+  });
+  option3.addEventListener("keypress", (e) => {
+    if (e.key === "Enter") {
       mediaTrie = mediaTrie.sort((a, b) => b.likes - a.likes);
       option1.style.visibility = "hidden";
       option2.style.visibility = "hidden";
       option3.style.visibility = "hidden";
       selection.style.visibility = "visible";
-      flechebas1.style.visibility = "hidden";
-      flechebas2.style.visibility = "hidden";
-      flechebas3.style.visibility = "visible";
+      flechehaut1.style.visibility = "hidden";
+      flechehaut2.style.visibility = "hidden";
+      flechehaut3.style.visibility = "hidden";
+      flechebas.style.visibility = "visible";
       let optionselectionnee = document.querySelector(".optionselectionnee");
       optionselectionnee.textContent = "Popularité";
       let mediasSection = document.querySelector(".photograph-main");
@@ -143,7 +221,7 @@ function Tri(photographer) {
         mediasSection.removeChild(mediasSection.firstChild);
       }
       afficheMedias(dossier);
-    });
+    }
   });
 }
 function afficheMedias(dossier) {
@@ -170,13 +248,19 @@ async function init() {
   const home = document.createElement("a");
   const logo = document.querySelector(".logo");
   const header = document.querySelector("header");
+  const main = document.querySelector("main");
+  main.setAttribute("aria-hidden", "false");
   home.setAttribute("href", `index.html`);
   home.appendChild(logo);
   header.appendChild(home);
   const body = document.querySelector("body");
   const modalLightbox = document.createElement("div");
   modalLightbox.className = "modalLightbox";
+  modalLightbox.setAttribute("aria-hidden", "true");
+  modalLightbox.setAttribute("aria-describedby", "Carrousel");
+  modalLightbox.setAttribute("role", "dialog");
   body.appendChild(modalLightbox);
+
   //fonction pour récupérer l'id du photographe
   const idPhotographer = await getIDUrl();
   //fonction pour récupérer les éléments du fichier json
@@ -196,6 +280,13 @@ async function init() {
   createModal(photographer.name);
   //fonction pour afficher la modal de contact du photographe
   modalBtn.addEventListener("click", displayModal);
+  modalBtn.addEventListener("keypress", (e) => {
+    //e.preventDefault pour eviter que lorsque je ferme la modale l'url se modifie
+    //je perds l'id du photographe sinon
+    if (e.key === "Enter") {
+      displayModal();
+    }
+  });
   //fonction pour valider la modal de contact du photographe
   const envoyerBtn = document.querySelector(".contact_envoyer");
   envoyerBtn.addEventListener("click", (e) => {
@@ -203,6 +294,12 @@ async function init() {
     //je perds l'id du photographe sinon
     e.preventDefault();
     return validate();
+  });
+  envoyerBtn.addEventListener("keypress", (e) => {
+    if (e.key === "Enter") {
+      e.preventDefault();
+      return validate();
+    }
   });
 }
 init();
