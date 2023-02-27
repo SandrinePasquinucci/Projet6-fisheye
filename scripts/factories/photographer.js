@@ -52,7 +52,6 @@ function photographerFactory(data, fenetre) {
       banniere.className = "banniere";
       encart.className = "encart";
       banniereencart.className = "banniereencart";
-      txtphotographeclassName = "txtphotographe";
       photoimg.setAttribute("src", picture);
       photoimg.setAttribute("alt", name);
       photoname.textContent = name;

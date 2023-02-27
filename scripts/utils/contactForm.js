@@ -13,7 +13,7 @@ function createModal(name) {
       onsubmit="return validate();"
       novalidate>
       
-      <div role="group" aria-labelledby="coordonnees">
+
         <label for="prenom">Prénom</label>
           <input id="prenom" type="prenom" name="prenom" 
             aria-labelledby="prenom" aria-describedby="prenom" aria-required=true />
@@ -31,7 +31,7 @@ function createModal(name) {
             aria-labelledby="message" aria-describedby="message" aria-required=true
           ></textarea>
         <p id="erreur"></p>
-      </div>
+    
       <button class="contact_envoyer" type=submit  >Envoyer</button>
     
     </form>
@@ -117,6 +117,15 @@ function displayModal() {
   modal.style.display = "block";
   modal.setAttribute("aria-hidden", "false");
   main.setAttribute("aria-hidden", "true");
+  const prenom = document.getElementById("prenom");
+  prenom.focus();
+  //on gere la fermeture de la modal par la touche esc
+
+  modal.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") {
+      closeModal();
+    }
+  });
 }
 
 //fermeture de la modale
@@ -126,4 +135,6 @@ function closeModal() {
   modal.style.display = "none";
   modal.setAttribute("aria-hidden", "true");
   main.setAttribute("aria-hidden", "false");
+  const tri = document.querySelector(".optionselectionnee");
+  tri.focus();
 }

@@ -47,7 +47,7 @@ function Tri(photographer) {
   const photographerModel = photographerFactory(photographer, "photo");
   const userCardDOM = photographerModel.getUserCardDOM();
   photographersSection.appendChild(userCardDOM);
-  dossier = photographer.name;
+  const dossier = photographer.name;
 
   // rajout des elements du tri
   const triClass = document.createElement("div");
@@ -55,19 +55,19 @@ function Tri(photographer) {
 
   triClass.innerHTML = `<div class="triepar">Trié par</div>
   <div class="selection">
-    <div class='optionselectionnee tabindex="0"'></div>
+    <div class="optionselectionnee" tabindex="0">Date</div>
     <i class="flechebas fa-solid fa-chevron-down"></i>
   </div>
   <div class="options">
-    <div class='option1 tabindex="0"'>
+    <div class="option1" tabindex="0">
       <div class="date">Date</div>
       <i class="flechehaut1 fa-solid fa-chevron-up"></i>
     </div>
-    <div class='option2 tabindex="0"'>
+    <div class="option2" tabindex="0">
       <div class="titre">Titre</div>
       <i class="flechehaut2 fa-solid fa-chevron-up"></i>
     </div>
-    <div class='option3 tabindex="0"'>
+    <div class="option3" tabindex="0">
       <div class="popularité">Popularité</div>
       <i class="flechehaut3 fa-solid fa-chevron-up"></i>
     </div>
@@ -75,7 +75,7 @@ function Tri(photographer) {
   `;
 
   triSection.appendChild(triClass);
-
+  mediaTrie = mediaTrie.sort((a, b) => new Date(b.date) - new Date(a.date));
   afficheMedias(dossier);
 
   const selection = document.querySelector(".selection");
@@ -86,7 +86,7 @@ function Tri(photographer) {
   const flechehaut2 = document.querySelector(".flechehaut2");
   const flechehaut3 = document.querySelector(".flechehaut3");
   const flechebas = document.querySelector(".flechebas");
-  selection.addEventListener("click", (e) => {
+  selection.addEventListener("click", () => {
     option1.style.visibility = "visible";
     option2.style.visibility = "visible";
     option3.style.visibility = "visible";
@@ -96,7 +96,7 @@ function Tri(photographer) {
     selection.style.visibility = "hidden";
     flechebas.style.visibility = "hidden";
   });
-  option1.addEventListener("click", (e) => {
+  option1.addEventListener("click", () => {
     mediaTrie = mediaTrie.sort((a, b) => new Date(b.date) - new Date(a.date));
     option1.style.visibility = "hidden";
     option2.style.visibility = "hidden";
@@ -114,7 +114,7 @@ function Tri(photographer) {
     }
     afficheMedias(dossier);
   });
-  option2.addEventListener("click", (e) => {
+  option2.addEventListener("click", () => {
     mediaTrie = mediaTrie.sort((a, b) => a.title.localeCompare(b.title));
     option1.style.visibility = "hidden";
     option2.style.visibility = "hidden";
@@ -132,7 +132,7 @@ function Tri(photographer) {
     }
     afficheMedias(dossier);
   });
-  option3.addEventListener("click", (e) => {
+  option3.addEventListener("click", () => {
     mediaTrie = mediaTrie.sort((a, b) => b.likes - a.likes);
     option1.style.visibility = "hidden";
     option2.style.visibility = "hidden";
@@ -151,7 +151,7 @@ function Tri(photographer) {
     afficheMedias(dossier);
   });
 
-  selection.addEventListener("keypress", (e) => {
+  selection.addEventListener("keydown", (e) => {
     if (e.key === "Enter") {
       option1.style.visibility = "visible";
       option2.style.visibility = "visible";
@@ -163,7 +163,7 @@ function Tri(photographer) {
       flechebas.style.visibility = "hidden";
     }
   });
-  option1.addEventListener("keypress", (e) => {
+  option1.addEventListener("keydown", (e) => {
     if (e.key === "Enter") {
       mediaTrie = mediaTrie.sort((a, b) => new Date(b.date) - new Date(a.date));
       option1.style.visibility = "hidden";
@@ -183,7 +183,7 @@ function Tri(photographer) {
       afficheMedias(dossier);
     }
   });
-  option2.addEventListener("keypress", (e) => {
+  option2.addEventListener("keydown", (e) => {
     if (e.key === "Enter") {
       mediaTrie = mediaTrie.sort((a, b) => a.title.localeCompare(b.title));
       option1.style.visibility = "hidden";
@@ -203,7 +203,7 @@ function Tri(photographer) {
       afficheMedias(dossier);
     }
   });
-  option3.addEventListener("keypress", (e) => {
+  option3.addEventListener("keydown", (e) => {
     if (e.key === "Enter") {
       mediaTrie = mediaTrie.sort((a, b) => b.likes - a.likes);
       option1.style.visibility = "hidden";
@@ -257,7 +257,6 @@ async function init() {
   const modalLightbox = document.createElement("div");
   modalLightbox.className = "modalLightbox";
   modalLightbox.setAttribute("aria-hidden", "true");
-  modalLightbox.setAttribute("aria-describedby", "Carrousel");
   modalLightbox.setAttribute("role", "dialog");
   body.appendChild(modalLightbox);
 
@@ -280,7 +279,7 @@ async function init() {
   createModal(photographer.name);
   //fonction pour afficher la modal de contact du photographe
   modalBtn.addEventListener("click", displayModal);
-  modalBtn.addEventListener("keypress", (e) => {
+  modalBtn.addEventListener("keydown", (e) => {
     //e.preventDefault pour eviter que lorsque je ferme la modale l'url se modifie
     //je perds l'id du photographe sinon
     if (e.key === "Enter") {
@@ -295,7 +294,7 @@ async function init() {
     e.preventDefault();
     return validate();
   });
-  envoyerBtn.addEventListener("keypress", (e) => {
+  envoyerBtn.addEventListener("keydown", (e) => {
     if (e.key === "Enter") {
       e.preventDefault();
       return validate();

@@ -1,6 +1,5 @@
 function mediaFactory(data, dossier, ordre) {
   const { id, title, image, video, likes, date, price } = data;
-
   const picture = `assets/SamplePhotos/${dossier}`;
 
   function getUserMediaDOM() {
@@ -57,7 +56,7 @@ function mediaFactory(data, dossier, ordre) {
       }
     });
 
-    medLike.addEventListener("keypress", function () {
+    medLike.addEventListener("keydown", function (e) {
       if (e.key === "Enter") {
         const AfficheLikes = document.querySelector(".Likes");
 
