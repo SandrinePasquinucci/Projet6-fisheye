@@ -134,18 +134,16 @@ function closeLightbox() {
   const main = document.getElementById("main");
   modalLB.setAttribute("aria-hidden", "true");
   main.setAttribute("aria-hidden", "false");
+
   const modalcontent = document.querySelector(".modal-content");
   //on supprime le contenu de la div modal-content
   while (modalcontent.firstChild) {
     modalcontent.removeChild(modalcontent.firstChild);
   }
-  const media = document.querySelector(".medTitleLight");
-  let card = document.querySelectorAll(".card");
-  card.forEach((crt) => {
-    if (currentIndex === crt.dataset.id) {
-      crt.focus();
-    }
-  });
+  const photographmain = document.querySelector(".photograph-main");
+  const card = photographmain.firstChild;
+  const media = card.firstChild;
+  media.focus();
 }
 
 //Fonction qui permet l'affiche du média suivant
